@@ -1,5 +1,6 @@
 #include "header.h"
 #include "functions.c"
+#include "helper.c"
 
 /******************************************************************************
 This is to certify that this project is my own work, based on my personal
