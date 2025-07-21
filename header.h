@@ -47,22 +47,33 @@ void addEstablishment(Directory *directory);
 void editEstablishment(Directory *directory);
 void deleteEstablishment(Directory *directory);
 
-// ----- Search and Filters -----
-void Search(Directory *directory);
+// ----- Filters -----
 void SingleFilter(Directory *directory);
 void MultipleFilter(Directory *directory);
 
 // ----- Display -----
-void DisplayTable(EstablishmentDetails entries[], int numEntries);
+void DisplayUserTable(EstablishmentDetails entries[], int numEntries);
+void DisplayAdminTable(const EstablishmentDetails *e);
 
 // ----- File Handling -----
 void saveToFile(Directory *directory, char filename[]);
 void loadFromFile(Directory *directory, char filename[]);
+void handleSave(Directory *directory, char filename[]); // Function for file saving 
 
-// ----- Helper Functions (Optional) -----
-void handleSave(Directory *directory, char filename[]);
-void stripNewline(char *str);
+// ----- Helper Functions -----
+void stripNewline(char *str); // Removes newline (\n) when reading
 void toLowerCase(const char *src, char *dest); // Converts string to lowercase (used for case-insensitive match)
+int stringAlreadyExists(StringName list[], int count, const char *value); // Checks if a given string already exists (avoids duplicates in listing down the filter guide)
+void findPriceRange(const Directory *directory, int *min, int *max); // Gets the lowest minPrice and highest maxPrice
+
+// ----- CRUD Operation Helpers -----
+void userInputText(const char *label, char *dest, int maxLen);
+int userInputNum(const char *label);
+void promptPriceRange(PriceRange *price);
+void promptPopularItems(int *count, StringName items[]);
+
+
+// ----- Filter Helpers -----
 int filterMatch(EstablishmentDetails *e,
                 const char *location,
                 const char *category,
@@ -71,14 +82,15 @@ int filterMatch(EstablishmentDetails *e,
                 int userMin,
                 int userMax); // Matches a single entry against all filters (AND logic)
 
-void printFilterHints(Directory *directory); // Displays available filter values (no duplicates)
+void promptFilterHints(const Directory *directory); // Displays available filter values (no duplicates)
 
 void promptFilters(char *location,
-                   char *category,
-                   char *payment,
-                   char *serving,
-                   int *min,
-                   int *max); // Prompts the user for all filters at once
+                    char *category,
+                    char *payment,
+                    char *serving,
+                    int *min,
+                    int *max,
+                    int singleMode); // Prompts the user for all filters at once
 
 
 #endif
