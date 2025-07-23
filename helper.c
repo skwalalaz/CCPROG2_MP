@@ -1,4 +1,5 @@
 #include "header.h"
+#include <ctype.h>
 
 void stripNewline(char *str) {
     int len = strlen(str);
