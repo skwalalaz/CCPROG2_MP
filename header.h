@@ -53,7 +53,7 @@ void MultipleFilter(Directory *directory);
 
 // ----- Display -----
 void DisplayUserTable(EstablishmentDetails entries[], int numEntries);
-void DisplayAdminTable(const EstablishmentDetails *e);
+void DisplayAdminTable(Directory *directory);
 
 // ----- File Handling -----
 void saveToFile(Directory *directory, char filename[]);
@@ -91,6 +91,8 @@ void promptFilters(char *location,
                     int *min,
                     int *max,
                     int singleMode); // Prompts the user for all filters at once
+
+void printFilterHints(Directory *directory);
 
 
 #endif
