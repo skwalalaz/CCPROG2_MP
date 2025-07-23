@@ -2,23 +2,22 @@
 
 // ----- Main Menu and Modes -----
 
-void MainMenu(Directory *directory, char filename[]){
+void MainMenu(Directory *directory, char filename[]) {
     int choice;
     int running = 1;
 
-    printf("\n========== MAIN MENU ==========\n");
-    printf("1. Admin Mode\n");
-    printf("2. User Mode\n");
-    printf("3. Load from File\n");
-    printf("4. Save to File \n");
-    printf("5. Exit\n");
-    printf("================================\n\n");
-    printf("--INPUT NUMBER ONLY--\n");
-    printf("Enter choice: ");
-    scanf("%d", &choice);
-    getchar();  // to remove leftover newline
-
     while(running) {
+        printf("\n========== MAIN MENU ==========\n");
+        printf("1. Admin Mode\n");
+        printf("2. User Mode\n");
+        printf("3. Load from File\n");
+        printf("4. Save to File \n");
+        printf("5. Exit\n");
+        printf("================================\n\n");
+        printf("--INPUT NUMBER ONLY--\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+        getchar();  // to remove leftover newline
 
         switch (choice) {
             case 1:
@@ -31,7 +30,7 @@ void MainMenu(Directory *directory, char filename[]){
 
             case 3: {
                 printf("Enter filename to load: ");
-                fgets(filename, sizeof(filename), stdin);
+                fgets(filename, MAX_LETTERS, stdin);
                 stripNewline(filename);
                 loadFromFile(directory, filename);
                 printf("Loaded from '%s'\n", filename);
@@ -62,7 +61,6 @@ void MainMenu(Directory *directory, char filename[]){
     }
 
     printf("Exiting program. Goodbye!\n");
-
 }
 
 void AdminMode(Directory *directory){
